@@ -1,5 +1,9 @@
-
 # Changelog
+
+## 1.1.4 (2026-07-09)
+
+* upgrade lucide icons version to 1.23.0
+
 ## 1.1.3 (2024-11-08)
 
 * upgrade lucide icons version to 0.455.0
