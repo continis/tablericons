@@ -1,1 +1,1 @@
-See https://github.com/franciscobmacedo/lucide/blob/main/CHANGELOG.md
+See https://github.com/continis/tablericons/blob/main/CHANGELOG.md

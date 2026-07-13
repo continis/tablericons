@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 """
-Download the latest lucide zip file and select only the optimized icons.
+Download the latest tablericons zip file and select only the optimized icons.
 """
 
 from __future__ import annotations
@@ -24,7 +24,7 @@ def main(argv: list[str] | None = None) -> int:
             "curl",
             "--fail",
             "--location",
-            f"https://github.com/lucide-icons/lucide/releases/download/{version}/lucide-icons-{version}.zip",
+            f"https://github.com/tabler/tabler-icons/archive/refs/tags/v{version}.zip",
         ],
         stdout=subprocess.PIPE,
     )
@@ -32,9 +32,9 @@ def main(argv: list[str] | None = None) -> int:
         raise SystemExit(1)
 
     input_zip = ZipFile(BytesIO(proc.stdout))
-    input_prefix = "icons/"
+    input_prefix = f"tabler-icons-{version}/icons/"
 
-    output_path = "src/lucide/lucide.zip"
+    output_path = "src/tablericons/tablericons.zip"
 
     try:
         os.remove(output_path)
@@ -46,12 +46,15 @@ def main(argv: list[str] | None = None) -> int:
         for name in sorted(input_zip.namelist()):
             if name.startswith(input_prefix) and name.endswith(".svg"):
                 info = input_zip.getinfo(name)
-                data = input_zip.read(name).replace(b' data-slot="icon"', b"")
+                data = input_zip.read(name)
+                if data.startswith(b"<!--"):
+                    if (comment_end := data.find(b"-->")) != -1:
+                        data = data[comment_end + 3 :]
 
                 new_name = name[len(input_prefix) :]
 
                 info.filename = new_name
-                output_zip.writestr(info, data)
+                output_zip.writestr(info, data.strip())
                 print(new_name)
 
     print("\n✅ Written!")

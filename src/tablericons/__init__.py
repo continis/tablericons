@@ -6,8 +6,7 @@ from copy import deepcopy
 from xml.etree import ElementTree
 from zipfile import ZipFile
 
-from lucide._compat import open_binary
-from lucide._compat import str_removeprefix
+from tablericons._compat import open_binary
 
 
 class IconDoesNotExist(Exception):
@@ -16,7 +15,7 @@ class IconDoesNotExist(Exception):
 
 @functools.lru_cache(maxsize=128)
 def _load_icon(name: str) -> ElementTree.Element:
-    zip_data = open_binary("lucide", "lucide.zip")
+    zip_data = open_binary("tablericons", "tablericons.zip")
     with closing(zip_data), ZipFile(zip_data, "r") as zip_file:
         try:
             svg_bytes = zip_file.read(f"{name}.svg")
@@ -26,9 +25,7 @@ def _load_icon(name: str) -> ElementTree.Element:
         svg = ElementTree.fromstring(svg_bytes.decode())
         for node in svg.iter():
             # Prevent output using the 'ns0' prefix for tags
-            node.tag = ElementTree.QName(
-                str_removeprefix(node.tag, "{http://www.w3.org/2000/svg}")
-            )  # type: ignore[assignment]  # unclear if really allowed
+            node.tag = ElementTree.QName(str.removeprefix(node.tag, "{http://www.w3.org/2000/svg}"))  # type: ignore[assignment]  # unclear if really allowed
         return svg
 
 

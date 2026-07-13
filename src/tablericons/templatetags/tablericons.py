@@ -4,13 +4,13 @@ from django import template
 from django.utils.safestring import SafeString
 from django.utils.safestring import mark_safe
 
-import lucide as _lucide
+import tablericons as _tablericons
 
 register = template.Library()
 
 
 @register.simple_tag
-def lucide(name: str, *, size: int | None = 24, **kwargs: object) -> str:
+def icon(name: str, *, size: int | None = 24, **kwargs: object) -> str:
     return _render_icon(name, size, **kwargs)
 
 
@@ -22,4 +22,4 @@ def _render_icon(name: str, size: int | None, **kwargs: object) -> str:
         key: (value + "" if isinstance(value, SafeString) else value)
         for key, value in kwargs.items()
     }
-    return mark_safe(_lucide._render_icon(name, size, **fixed_kwargs))
+    return mark_safe(_tablericons._render_icon(name, size, **fixed_kwargs))

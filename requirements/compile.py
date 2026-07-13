@@ -21,135 +21,16 @@ if __name__ == "__main__":
         *sys.argv[1:],
     ]
     run = partial(subprocess.run, check=True)
-    run(
-        [
-            *common_args,
-            "--python",
-            "3.8",
-            "--output-file",
-            "py38-django32.txt",
-        ],
-        input=b"Django>=3.2a1,<3.3",
-    )
-    run(
-        [
-            *common_args,
-            "--python",
-            "3.8",
-            "--output-file",
-            "py38-django40.txt",
-        ],
-        input=b"Django>=4.0a1,<4.1",
-    )
-    run(
-        [
-            *common_args,
-            "--python",
-            "3.8",
-            "--output-file",
-            "py38-django41.txt",
-        ],
-        input=b"Django>=4.1a1,<4.2",
-    )
-    run(
-        [
-            *common_args,
-            "--python",
-            "3.8",
-            "--output-file",
-            "py38-django42.txt",
-        ],
-        input=b"Django>=4.2a1,<5.0",
-    )
-    run(
-        [
-            *common_args,
-            "--python",
-            "3.9",
-            "--output-file",
-            "py39-django32.txt",
-        ],
-        input=b"Django>=3.2a1,<3.3",
-    )
-    run(
-        [
-            *common_args,
-            "--python",
-            "3.9",
-            "--output-file",
-            "py39-django40.txt",
-        ],
-        input=b"Django>=4.0a1,<4.1",
-    )
-    run(
-        [
-            *common_args,
-            "--python",
-            "3.9",
-            "--output-file",
-            "py39-django41.txt",
-        ],
-        input=b"Django>=4.1a1,<4.2",
-    )
-    run(
-        [
-            *common_args,
-            "--python",
-            "3.9",
-            "--output-file",
-            "py39-django42.txt",
-        ],
-        input=b"Django>=4.2a1,<5.0",
-    )
+
     run(
         [
             *common_args,
             "--python",
             "3.10",
             "--output-file",
-            "py310-django32.txt",
+            "py310-django52.txt",
         ],
-        input=b"Django>=3.2a1,<3.3",
-    )
-    run(
-        [
-            *common_args,
-            "--python",
-            "3.10",
-            "--output-file",
-            "py310-django40.txt",
-        ],
-        input=b"Django>=4.0a1,<4.1",
-    )
-    run(
-        [
-            *common_args,
-            "--python",
-            "3.10",
-            "--output-file",
-            "py310-django41.txt",
-        ],
-        input=b"Django>=4.1a1,<4.2",
-    )
-    run(
-        [
-            *common_args,
-            "--python",
-            "3.10",
-            "--output-file",
-            "py310-django42.txt",
-        ],
-        input=b"Django>=4.2a1,<5.0",
-    )
-    run(
-        [
-            *common_args,
-            "--python",
-            "3.10",
-            "--output-file",
-            "py310-django50.txt",
-        ],
-        input=b"Django>=5.0a1,<5.1",
+        input=b"Django>=5.2,<6.0",
     )
     run(
         [
@@ -157,29 +38,9 @@ if __name__ == "__main__":
             "--python",
             "3.11",
             "--output-file",
-            "py311-django41.txt",
+            "py311-django52.txt",
         ],
-        input=b"Django>=4.1a1,<4.2",
-    )
-    run(
-        [
-            *common_args,
-            "--python",
-            "3.11",
-            "--output-file",
-            "py311-django42.txt",
-        ],
-        input=b"Django>=4.2a1,<5.0",
-    )
-    run(
-        [
-            *common_args,
-            "--python",
-            "3.11",
-            "--output-file",
-            "py311-django50.txt",
-        ],
-        input=b"Django>=5.0a1,<5.1",
+        input=b"Django>=5.2,<6.0",
     )
     run(
         [
@@ -187,9 +48,29 @@ if __name__ == "__main__":
             "--python",
             "3.12",
             "--output-file",
-            "py312-django42.txt",
+            "py312-django52.txt",
         ],
-        input=b"Django>=4.2a1,<5.0",
+        input=b"Django>=5.2,<6.0",
+    )
+    run(
+        [
+            *common_args,
+            "--python",
+            "3.13",
+            "--output-file",
+            "py313-django52.txt",
+        ],
+        input=b"Django>=5.2,<6.0",
+    )
+    run(
+        [
+            *common_args,
+            "--python",
+            "3.14",
+            "--output-file",
+            "py314-django52.txt",
+        ],
+        input=b"Django>=5.2,<6.0",
     )
     run(
         [
@@ -197,7 +78,27 @@ if __name__ == "__main__":
             "--python",
             "3.12",
             "--output-file",
-            "py312-django50.txt",
+            "py312-django60.txt",
         ],
-        input=b"Django>=5.0a1,<5.1",
+        input=b"Django>=6.0,<6.1",
+    )
+    run(
+        [
+            *common_args,
+            "--python",
+            "3.13",
+            "--output-file",
+            "py313-django60.txt",
+        ],
+        input=b"Django>=6.0,<6.1",
+    )
+    run(
+        [
+            *common_args,
+            "--python",
+            "3.14",
+            "--output-file",
+            "py314-django60.txt",
+        ],
+        input=b"Django>=6.0,<6.1",
     )
