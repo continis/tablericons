@@ -7,9 +7,9 @@
         style="max-width: 100%;"
     >
 </a>
-<a href="https://pypi.org/project/tablericons/">
+<a href="https://pypi.org/project/tablericons2/">
     <img
-        src="https://img.shields.io/pypi/v/tablericons.svg?style=for-the-badge"
+        src="https://img.shields.io/pypi/v/tablericons2.svg?style=for-the-badge"
         alt="pypi"
         style="max-width: 100%;"
     >
