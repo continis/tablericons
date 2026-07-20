@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 from django import template
+from django.conf import settings
 from django.utils.safestring import SafeString
 from django.utils.safestring import mark_safe
 
@@ -10,7 +11,10 @@ register = template.Library()
 
 
 @register.simple_tag
-def icon(name: str, *, size: int | None = 24, **kwargs: object) -> str:
+def icon(name: str, *, size: int | None = None, **kwargs: object) -> str:
+    if size is None:
+        size = getattr(settings, "TABLERICONS_SIZE", 24)
+    kwargs.setdefault("stroke_width", getattr(settings, "TABLERICONS_STROKE_WIDTH", 2))
     return _render_icon(name, size, **kwargs)
 
 

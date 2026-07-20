@@ -105,22 +105,33 @@ Most attributes will be added to the `<svg>` tag containing the icon, but these 
 
 #### Examples
 
-An "a-arrow-down” icon:
+An "arrow-down” icon:
 
 ```django
-    {% icon "a-arrow-down" %}
+    {% icon "outline/arrow-down" %}
 ```
 
 The same icon at 40x40 pixels, and a CSS class:
 
 ```django
-    {% icon "a-arrow-down" size=40 class="mr-4" %}
+    {% icon "outline/arrow-down" size=40 class="mr-4" %}
 ```
 
 That icon again, but with the paths changed to a narrower stroke width, and a "data-controller" attribute declared:
 
 ```django
-    {% icon "a-arrow-down" stroke_width=1 data_controller="language" %}
+    {% icon "outline/arrow-down" stroke_width=1 data_controller="language" %}
+```
+
+#### Django Settings
+
+_New in 1.1.0_
+
+You can override the default size and stroke width using your `settings.py`:
+
+```python
+TABLERICONS_SIZE = 24
+TABLERICONS_STROKE_WIDTH = 2
 ```
 
 ### Jinja templates
@@ -163,22 +174,22 @@ Most attributes will be added to the `<svg>` tag containing the icon, but these 
 
 #### Examples
 
-An "a-arrow-down” icon:
+An "outline/arrow-down” icon:
 
 ```jinja
-    {{ icon("a-arrow-down") }}
+    {{ icon("outline/arrow-down") }}
 ```
 
 The same icon at 40x40 pixels and a CSS class:
 
 ```jinja
-    {{ icon("a-arrow-down", size=40, class="mr-4") }}
+    {{ icon("outline/arrow-down", size=40, class="mr-4") }}
 ```
 
 That icon again, but with the paths changed to a narrower stroke width, and a "data-controller" attribute declared:
 
 ```jinja
-    {{ icon("a-arrow-down", stroke_width=1, data_controller="language") }}
+    {{ icon("outline/arrow-down", stroke_width=1, data_controller="language") }}
 ```
 
 ## Acknowledgements
