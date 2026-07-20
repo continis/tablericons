@@ -1,0 +1,60 @@
+name: Update Tabler Icons
+
+on:
+  schedule:
+    - cron: "17 5 * * *"
+  workflow_dispatch: {}
+  repository_dispatch:
+    types:
+      - tabler-icons-release
+
+permissions:
+  contents: write
+  pull-requests: write
+
+concurrency:
+  group: update-tabler-icons
+  cancel-in-progress: false
+
+jobs:
+  update:
+    name: Update bundled Tabler Icons
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.14"
+
+      - name: Resolve latest upstream release
+        id: latest
+        run: |
+          set -eu
+          tag_name=$(curl --fail --location --silent https://api.github.com/repos/tabler/tabler-icons/releases/latest | python -c 'import json,sys; print(json.load(sys.stdin)["tag_name"])')
+          version=${tag_name#v}
+          echo "tag=$tag_name" >> "$GITHUB_OUTPUT"
+          echo "version=$version" >> "$GITHUB_OUTPUT"
+
+      - name: Download and bundle latest icons
+        run: |
+          python download_tabler_icons.py "${{ steps.latest.outputs.version }}"
+
+      - name: Open pull request if there are changes
+        uses: peter-evans/create-pull-request@v7
+        with:
+          commit-message: "chore: update tabler icons to ${{ steps.latest.outputs.tag }}"
+          branch: "chore/update-tabler-icons"
+          delete-branch: true
+          title: "chore: update tabler icons to ${{ steps.latest.outputs.tag }}"
+          body: |
+            Automated update triggered by the upstream Tabler Icons release.
+
+            - Upstream release: `${{ steps.latest.outputs.tag }}`
+            - Source: https://github.com/tabler/tabler-icons/releases
+
+            This PR was created automatically by the update workflow.
+          labels: |
+            relnotes-change
+            dependencies
