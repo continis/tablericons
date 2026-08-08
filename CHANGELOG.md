@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.1.1 (2026-08-08)
+
+* Update to Tabler icons v3.46.0
+
 ## 1.1.0 (2026-07-20)
 
 * Added Django settings for default size stroke width
